@@ -1,48 +1,86 @@
-import { useState } from "react";
-import { View, TextInput, Button, Alert } from "react-native";
-import API from "../services/api";
-import { router } from "expo-router";
+// import { useState } from "react";
+// import { View, TextInput, Button, Alert } from "react-native";
+// import API from "../services/api";
+// import { router } from "expo-router";
+// import axios from "axios";
 
-export default function RegisterScreen() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+// export default function RegisterScreen() {
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [loading, setLoading] = useState(false);
 
-  const register = async () => {
-    try {
-      await API.post("/register", {
-        name,
-        email,
-        password,
-        role: "user",
-      });
+//   const register = async () => {
+//     if (!name || !email || !password) {
+//       return Alert.alert("Error", "All fields are required");
+//     }
 
-      Alert.alert("Success", "Account created!");
+//     try {
+//       setLoading(true);
 
-      router.replace("/"); 
+//       await API.post("/register", {
+//         name,
+//         email,
+//         password,
+//         role: "user",
+//       });
 
-    } catch (err) {
-      Alert.alert(
-        "Error",
-        err.response?.data?.message || "Registration failed"
-      );
-    }
-  };
+//       setName("");
+//       setEmail("");
+//       setPassword("");
 
-  return (
-    <View style={{ padding: 20 }}>
-      <TextInput placeholder="Name" onChangeText={setName} />
-      <TextInput
-        placeholder="Email"
-        onChangeText={(text) => setEmail(text.toLowerCase())}
-      />
-      <TextInput
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={setPassword}
-      />
+//       Alert.alert("Success", "Account created!");
 
-      <Button title="Register" onPress={register} />
-    </View>
-  );
+//       router.replace("/");
+
+//     } catch (err) {
+//         console.log("ERROR:", err);
+      
+//         if (axios.isAxiosError(err)) {
+//           Alert.alert(
+//             "Error",
+//             err.response?.data?.message || "Registration failed"
+//           );
+//         } else {
+//           Alert.alert("Error", "Something went wrong");
+//         }
+//       } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <View style={{ padding: 20 }}>
+//       <TextInput
+//         placeholder="Name"
+//         value={name}
+//         onChangeText={setName}
+//       />
+
+//       <TextInput
+//         placeholder="Email"
+//         value={email}
+//         onChangeText={(text) => setEmail(text.toLowerCase())}
+//       />
+
+//       <TextInput
+//         placeholder="Password"
+//         secureTextEntry
+//         value={password}
+//         onChangeText={setPassword}
+//       />
+
+//       <Button
+//         title={loading ? "Creating..." : "Register"}
+//         onPress={register}
+//         disabled={loading}
+//       />
+//     </View>
+//   );
+// }
+
+import RegisterScreen from "../screens/registerscreen";
+
+export default function Register() {
+  return <RegisterScreen />;
 }
