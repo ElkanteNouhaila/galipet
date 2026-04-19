@@ -11,6 +11,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+console.log("DATABASE_URL =", process.env.DATABASE_URL);
+
 app.get("/", (req, res) => {
     res.json({ message: "GaliPet API running" });
   });
