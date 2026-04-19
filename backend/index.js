@@ -17,16 +17,24 @@ app.get("/", (req, res) => {
     res.json({ message: "GaliPet API running" });
   });
   
-  app.get("/test-db", async (req, res) => {
+  app.get("/init-db", async (req, res) => {
     try {
-      const result = await pool.query("SELECT * FROM users");
-      res.json(result.rows);
+      await pool.query(`
+        CREATE TABLE IF NOT EXISTS users (
+          id SERIAL PRIMARY KEY,
+          name TEXT NOT NULL,
+          email TEXT UNIQUE NOT NULL,
+          password TEXT NOT NULL,
+          role TEXT
+        );
+      `);
+  
+      res.json({ message: "Users table created" });
     } catch (err) {
-      console.error("DB TEST ERROR:", err);
+      console.error(err);
       res.status(500).json({ error: err.message });
     }
   });
-  
 // register
 app.post("/register", async (req, res) => {
   try {
