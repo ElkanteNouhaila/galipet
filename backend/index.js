@@ -35,6 +35,16 @@ app.get("/", (req, res) => {
       res.status(500).json({ error: err.message });
     }
   });
+
+  app.get("/test-db", async (req, res) => {
+    try {
+      const result = await pool.query("SELECT * FROM users");
+      res.json(result.rows);
+    } catch (err) {
+      console.error("DB TEST ERROR:", err);
+      res.status(500).json({ error: err.message });
+    }
+  });
 // register
 app.post("/register", async (req, res) => {
   try {
