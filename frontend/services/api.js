@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 const API = axios.create({
-  baseURL: "http://10.219.40.144:5000",
+  baseURL: "https://galipet.onrender.com",
 });
 
 API.interceptors.request.use(async (config) => {
