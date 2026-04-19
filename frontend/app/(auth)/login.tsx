@@ -82,13 +82,12 @@ export default function Login() {
         disabled={loading}
       />
 
-      {/* 👇 Register navigation */}
       <TouchableOpacity
         onPress={() => router.push("/(auth)/register")}
         style={{ marginTop: 20 }}
       >
         <Text style={{ textAlign: "center", color: "blue" }}>
-          Don't have an account? Register
+          Don&apos;t have an account? Register
         </Text>
       </TouchableOpacity>
     </View>
